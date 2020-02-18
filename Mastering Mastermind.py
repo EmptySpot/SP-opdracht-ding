@@ -1,18 +1,19 @@
 import random
-
-#Ik weet niet hoe ik verder kom met hetgeen wat ik al heb, als in ik weet niet hoe ik de beste keuze voor de pc nu moet laten uitrekenen. Ook weet ik niet hoe ik met de zwarte pins precies moet werken.
-#Heeft u hier een tip voor of iets waardoor ik weer verder kan?
-
+from Feedback import botstart
+from Mogelijk import createans
 
 def start():
-    wie = input("Wil je zelf gokken of de pc laten gokken?: ").lower()
+    wie = input("Wil je zelf gokken of de pc laten gokken? Hiernaast is mogelijk om een zelf bedachte algoritme als al: ").lower()
     if wie == ("pc"):
         menscode()
     else:
         if wie == ("zelf"):
             randomcode()
         else:
-            start()
+            if wie == ("al"):
+                alcode()
+            else:
+                start()
 
 def randomcode():
     code = []
@@ -71,31 +72,21 @@ def gok(code):
 
 def menscode():
     botcode = []
-    b = len(botcode)
-    while b != 3:
-        b = len(botcode)
+    b = 0
+    while b != 4:
         kleur = (input("Wat is code kleur " + str(b + 1) + "?: "))
         kleurdict = {'wit' : 1, 'zwart' : 2, "rood" : 3, "blauw" : 4, "geel" : 5, "groen" : 6}
         try:
             botcode.append(kleurdict[kleur])
+            b += 1
         except KeyError:
             print("Deze kleur zit niet in de game")
+        print(botcode)
     mogelijk = createans()
     code = ''.join(map(str, botcode))
-    eenfunctienaam(mogelijk, code)
+    feedbacktester(mogelijk, code)
 
-def createans():
-    possibleans = []
-    for i in range(1111, 6667):
-        answer = str(i)
-        if '7' in answer or '8' in answer or '9' in answer or '0' in answer:
-            continue
-        else:
-            possibleans.append(answer)
-    print(possibleans)
-    return possibleans
-
-def eenfunctienaam(mogelijk, code):
+def feedbacktester(mogelijk, code):
     lives = 10
     attempts = 0
 
@@ -123,40 +114,42 @@ def eenfunctienaam(mogelijk, code):
                 print('game over')
     start()
 
-def botstart(strcode, gok):
+def alcode():
+    mogelijk = createans()
+    b = 0
     code = []
-    for item in strcode:
-        code.append(int(item))
-    nieuw = [0, 0, 0, 0]
-    hint = [0, 0]
-    lengtehint = 0
-    aanpascode = [0, 0, 0, 0]
-    while lengtehint != 4:
-        if code[lengtehint] == int(gok[lengtehint]):
-            print(code[lengtehint])
-            print(gok[lengtehint])
-            nieuw[lengtehint] = 1
-            aanpascode[lengtehint] = 99
-            hint[0] = hint[0] + 1
+    while b != 4:
+        b = len(code)
+        kleur = (input("Wat is code nummer" + str(b+1)))
+        if kleur < '7':
+            code.append(kleur)
+            b += 1
         else:
-            aanpascode[lengtehint] = code[lengtehint]
-        lengtehint += 1
-    lengtehint = 0
-    while lengtehint != 4:
-        if int(gok[lengtehint]) in aanpascode:
-            if nieuw[lengtehint] != 1:
-                hint[1] += 1
-                aanpascode[int(gok[lengtehint])-1] = 9
-        lengtehint += 1
-    print(hint)
-    return hint
+            print("Dit getal werkt niet")
+    code = ''.join(map(str, code))
+    j = '1'
+    while int(j) != 7:
+        hint = botstart(code, j+j+j+j)
+        if sum(hint) == 0:
+            for i in reversed(mogelijk):
+                if j in i:
+                    mogelijk.remove(i)
+        j = str(int(j)+1)
+    attempts = 6
+    for i in reversed(mogelijk):
+        if i != code:
+            attempts += 1
+            mogelijk.remove(i)
+        else:
+            print('Klaar')
+            print(i)
+            print(attempts)
+            break
+    start()
 
-#code = []
-#code.append(input('getal'))
-#code.append(input('getal'))
-#code.append(input('getal'))
-#code.append(input('getal'))
-#strcode = '1134'
-#botstart(strcode, code)
+
+
+
+
 
 start()
