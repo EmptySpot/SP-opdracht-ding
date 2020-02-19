@@ -123,6 +123,7 @@ def simplestrategy():
                 print('Game over')
     start()
 
+
 def heuristiekcode():
     mogelijk = createans()
     b = 0

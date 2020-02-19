@@ -13,6 +13,7 @@ def simplestrategyfeedback(strcode, gok):
     hint[1] = wit
     return hint
 
+
 def AlgoritmeFeedback(code, mogelijk):
     j = '1'                                             #Ik gebruik j als teller in while loops, ook gebruik ik het om bijvoorbeeld locaties in een list te bepalen in die while loop.
     attemptsvermindering = 4
