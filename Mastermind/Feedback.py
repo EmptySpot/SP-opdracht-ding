@@ -7,14 +7,14 @@ def simplestrategyfeedback(strcode, gok):
     geteldecode = collections.Counter(strcode)          #Deze heb ik als tip van Menno Oud gekregen vanwege mijn trage en bar werkende orginele feedback,
     geteldegok = collections.Counter(gok)
     wit = sum(min(geteldecode[k], geteldegok[k]) for k in geteldecode)
-    zwart = sum(a==b for a,b in zip(strcode, gok))
+    zwart = sum(a==b for a,b in zip(strcode, gok))      #De tip van Menno is tot en met deze regel.
     wit -= zwart
     hint[0] = zwart
     hint[1] = wit
     return hint
 
 def AlgoritmeFeedback(code, mogelijk):
-    j = '1'                                             #Ik gebruik j als teller in while loops
+    j = '1'                                             #Ik gebruik j als teller in while loops, ook gebruik ik het om bijvoorbeeld locaties in een list te bepalen in die while loop.
     attemptsvermindering = 4
     attemps = 0
     while int(j) != 6:

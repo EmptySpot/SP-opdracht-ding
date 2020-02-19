@@ -4,7 +4,7 @@ def bestegok(mogelijk):
     if len(mogelijk) > 1000:
         return '1122'
     else:
-        max_feedback = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]       #Dit is zeker niet de netste manier om dit te maken, hier heb ik eigenlijk geen clean coding standards.
+        max_feedback = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]       #Dit is zeker niet de netste manier om dit te maken, hier heb ik niet al te veel naar clean coding standards gewerkt.
         mogelijklist = [[],[],[],[],[],[],[],[],[],[],[],[],[],[]]
         for i in reversed(mogelijk):
             item_feedback = simplestrategyfeedback('1122', i)

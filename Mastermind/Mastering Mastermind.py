@@ -88,6 +88,7 @@ def gok(code):
 def menscode():
     botcode = []
     b = 0
+    print("This code works with the colours: white, black, red, blue, yellow and green.")
     while b != 4:
         kleur = (input("What is the colour code of nummer " + str(b + 1) + "?: "))
         kleurdict = {'white' : 1, 'black' : 2, "red" : 3, "blue" : 4, "yellow" : 5, "green" : 6}
@@ -113,8 +114,9 @@ def simplestrategy():
         print(gok)
         attempts += 1
         if code == gok:
+            print("The code replies in numbers, which represents the colours as follows: white = 1, black = 2, red = 3, blue = 4, yellow = 5 and green = 6.")
             print(colored('The code has been found as ', 'red') + str(gok))
-            print('This has been done in ' + str(attempts) + ' attempts' )
+            print('This has been done in ' + str(attempts) + ' attempts\n' )
             break
         else:
             if attempts == 10:
@@ -125,6 +127,7 @@ def heuristiekcode():
     mogelijk = createans()
     b = 0
     code = []
+    print("This code works with numbers instead of colours")
     while b != 4:
         b = len(code)
         kleur = (input("What is the code number " + str(b+1) +"? "))
@@ -137,7 +140,7 @@ def heuristiekcode():
     mogelijk, attempts = AlgoritmeFeedback(code, mogelijk)
     i, attempts = SnelFeedback(code, mogelijk, attempts)
     print(colored('The code has been found as ', 'red') + str(i))
-    print('This has been done in ' + str(attempts) + ' attempts')
+    print('This has been done in ' + str(attempts) + ' attempts\n')
     start()
 
 def lookingonestep():
@@ -153,8 +156,9 @@ def lookingonestep():
                 mogelijk.remove(i)
         attempts += 1
         if code == gok:
+            print("The code replies in numbers, which represents the colours as follows: white = 1, black = 2, red = 3, blue = 4, yellow = 5 and green = 6.")
             print(colored('The code has been found as ', 'red') + str(gok))
-            print('This has been done in ' + str(attempts) + ' attempts' )
+            print('This has been done in ' + str(attempts) + ' attempts\n' )
             break
         else:
             if attempts == 10:
